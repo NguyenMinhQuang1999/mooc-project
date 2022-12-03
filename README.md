@@ -30,6 +30,10 @@ npm run dev
 # Run backend only
 npm run server
 
+# Sample User Admin Logins
+
+admin@gmail.com (Admin)
+123456
 
 # Seed Database
 You can use the following commands to seed the database with some sample users and products as well as destroy all data
@@ -40,8 +44,5 @@ npm run data:import
 # Destroy data
 npm run data:destroy
 
-Sample User Logins
 
-admin@gmail.com (Admin)
-123456
 
