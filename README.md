@@ -17,6 +17,8 @@ Import and export product
 
 Validation Input
 
+Show error when call error api
+
 
 # File ENV
 NODE_ENV = development
