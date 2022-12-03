@@ -38,7 +38,7 @@ npm run client
 
 # Sample User Admin Logins
 
-admin@gmail.com
+admin@gmail.com/
 123456
 
 # Seed Database
