@@ -9,6 +9,8 @@ Product pagination
 
 Product search
 
+Product Detail
+
 Login, logout
 
 Admin product management
