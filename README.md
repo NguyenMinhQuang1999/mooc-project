@@ -2,11 +2,17 @@
  
 # Features
 Shopping cart
+
 Product pagination
+
 Product search
-Login user
+
+Login, logout
+
 Admin product management
+
 Import and export product
+
 Validation Input
 
 
