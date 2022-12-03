@@ -32,7 +32,7 @@ npm run server
 
 # Sample User Admin Logins
 
-admin@gmail.com (Admin)
+admin@gmail.com
 123456
 
 # Seed Database
