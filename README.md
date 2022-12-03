@@ -1,5 +1,7 @@
 ﻿# mock-project-react
  
+ Using reactjs and nodejs
+ 
 # Features
 Shopping cart
 
