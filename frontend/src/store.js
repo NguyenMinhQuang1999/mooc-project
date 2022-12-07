@@ -46,14 +46,6 @@ const reducer = combineReducers({
 
 })
 
-// export const store = configureStore({
-//   reducer: reducer,
-//   devTools: process.env.NODE_ENV !== 'production',
-//   middleware: [thunk]
-
-// })
-
-// export const persistor = persistStore(store)
 
 const store = createStore(
   reducer,

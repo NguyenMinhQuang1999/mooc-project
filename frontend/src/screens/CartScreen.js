@@ -29,7 +29,6 @@ const CartScreen = () => {
   };
 
 
-
   useEffect(() => {
     if (id) {
       dispatch(addToCart(id, qty));
@@ -41,9 +40,7 @@ const CartScreen = () => {
       <Col md={8}>
         <h1> Shoppping Cart</h1>
         {cartItems.length === 0 ? (
-          <Message variant="">
-            Your cart is empty <Link to="/">Go back</Link>
-          </Message>
+          <p> Your cart is empty <Link to="/">Go back</Link></p>
         ) : (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
