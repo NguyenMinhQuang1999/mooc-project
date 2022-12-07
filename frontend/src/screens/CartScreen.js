@@ -30,8 +30,6 @@ const CartScreen = () => {
 
 
 
-  console.log("qty", qty);
-  console.log("cartItems", cartItems);
   useEffect(() => {
     if (id) {
       dispatch(addToCart(id, qty));

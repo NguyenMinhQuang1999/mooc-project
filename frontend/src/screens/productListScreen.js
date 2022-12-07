@@ -45,11 +45,10 @@ const ProductListScreen = () => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    dispatch(listProducts("", pageNumbers));
-
     if (!userInfo || !userInfo.isAdmin) {
       history.push("/login");
     }
+    dispatch(listProducts("", pageNumbers));
 
     //import
     if (successImport || successDelete) {
@@ -59,16 +58,6 @@ const ProductListScreen = () => {
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure")) {
-      toast.success("Delete Susscessfully!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
       dispatch(deleteProduct(id));
     }
   };
@@ -130,8 +119,17 @@ const ProductListScreen = () => {
     if (!myfile) {
       return;
     }
-    if (!checkFileName) {
-      alert("File invalid");
+    if (!checkFileName(myfile.name)) {
+      toast.error("File invalid!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
 
@@ -162,10 +160,11 @@ const ProductListScreen = () => {
             <i className="fas fa-file-import"></i> Import Excel
           </Button>
           {fileName && (
-            <i onClick={handleRemove} className="fas fa-time">
-              {" "}
-              {/* Remove file{" "} */}
-            </i>
+          <div onClick={handleRemove} style={{cusor: "pointer"}}>
+            <i  className="fa fa-times">
+              </i>
+            Remove file: <i>{fileName}</i>
+          </div>
           )}
           <Form.Control
             type="file"

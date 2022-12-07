@@ -1,5 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   productListReducer,
@@ -12,9 +16,22 @@ import {
 import { cartReducer } from './reducers/cartReducers'
 import {
   userLoginReducer,
-  userRegisterReducer,
-  userDetailsReducer,
 } from './reducers/userReducers'
+
+
+const middleware = [thunk]
+
+const cartPersistConfig = {
+  key: 'cartItems',
+  storage,
+  stateReconciler: autoMergeLevel2
+}
+
+const userPersistConfig = {
+  key: 'userInfo',
+  storage,
+  stateReconciler: autoMergeLevel2
+}
 
 
 const reducer = combineReducers({
@@ -24,36 +41,26 @@ const reducer = combineReducers({
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,
   productImport: productImportReducer,
-  cart: cartReducer,
-  userLogin: userLoginReducer,
-  userRegister: userRegisterReducer,
-  userDetails: userDetailsReducer,
+  cart: persistReducer(cartPersistConfig, cartReducer),
+  userLogin: persistReducer(userPersistConfig, userLoginReducer),
 
 })
 
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
-  : []
+// export const store = configureStore({
+//   reducer: reducer,
+//   devTools: process.env.NODE_ENV !== 'production',
+//   middleware: [thunk]
 
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
-  : null
+// })
 
-
-
-const initialState = {
-  cart: {
-    cartItems: cartItemsFromStorage,
-  },
-  userLogin: { userInfo: userInfoFromStorage },
-}
-
-const middleware = [thunk]
+// export const persistor = persistStore(store)
 
 const store = createStore(
   reducer,
-  initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 )
+  const persistor = persistStore(store)
 
-export default store
+
+
+export  { store, persistor }
